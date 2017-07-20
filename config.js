@@ -12,8 +12,17 @@ config = {
     // When running Ghost in the wild, use the production environment.
     // Configure your URL and mail settings here
     production: {
-        url: 'http://nerdymamas.com:8000',
-        mail: {},
+        url: 'http://nerdymamas.com',
+        mail: {
+            transport: process.env.MAIL_TRANSPORT,
+            options: {
+                service: process.env.MAIL_SERVICE,
+                auth: {
+                    user: process.env.MAIL_USER,
+                    pass: process.env.MAIL_PASSWORD
+                }
+            }
+        },
         database: {
             client: 'mysql',
             connection: {
