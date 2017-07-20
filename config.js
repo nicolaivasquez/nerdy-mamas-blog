@@ -12,12 +12,16 @@ config = {
     // When running Ghost in the wild, use the production environment.
     // Configure your URL and mail settings here
     production: {
-        url: 'http://my-ghost-blog.com',
+        url: 'http://nerdymamas.com:8000',
         mail: {},
         database: {
-            client: 'sqlite3',
+            client: 'mysql',
             connection: {
-                filename: path.join(process.env.GHOST_CONTENT, '/data/ghost.db')
+                host: 'mysql',
+                user     : process.env.MYSQL_USER, // Copy the MYSQL_USER from docker-compose-sample.yml
+                password : process.env.MYSQL_PASSWORD, // Copy the MYSQL_PASSWORD from docker-compose-sample.yml
+                database : process.env.MYSQL_DATABASE, // Copy the MYSQL_DATABASE from docker-compose-sample.yml
+                charset  : 'utf8'
             },
             debug: false
         },
@@ -25,6 +29,9 @@ config = {
         server: {
             host: '0.0.0.0',
             port: '2368'
+        },
+        paths: {
+            contentPath: path.join(process.env.GHOST_CONTENT, '/')
         }
     },
 

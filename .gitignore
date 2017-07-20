@@ -56,3 +56,6 @@ apps
 data
 images
 themes
+db
+
+docker-compose.yml
